@@ -15,10 +15,10 @@ class htcondor (
     include htcondor::logrotate_config
     include htcondor::repositories
     include htcondor::service
-    include htcondor::user_group
+    include htcondor::pre_install
 
     #User 'condor' must be created before installing the package
-    Class['htcondor::user_group'] ->
+    Class['htcondor::pre_install'] ->
     Class['htcondor::repositories'] -> 
     Class['htcondor::install'] -> 
     Class['htcondor::config'] ->

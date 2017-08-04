@@ -1,4 +1,4 @@
-class htcondor::user_group {
+class htcondor::pre_install {
 
     $account_uid = $htcondor::condor_account_uid
     $group_gid = $htcondor::condor_group_gid
@@ -20,5 +20,17 @@ class htcondor::user_group {
         require => Group['condor'],
     }
 
+    file {['/var/lib/condor/', '/home/condor']:
+        ensure => directory,
+        owner => 'condor',
+        group => 'condor',
+        mode => '0755',
+    }
+
+    file {'/var/lib/condor/execute/':
+        ensure => link,
+        target => '/home/condor',
+        require => File['/home/condor'],
+    }
 
 }
