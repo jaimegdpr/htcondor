@@ -29,5 +29,13 @@ class htcondor::config {
             mode => '0600',
             source => "puppet:///grid_files/htcondor/pool_password",
     }
+
+    file {'/home/condor/user_job_wrapper':
+        ensure => present,
+        owner => 'condor',
+        group => 'condor',
+        mode => '0755',
+        source => "puppet:///grid_files/htcondor/user_job_wrapper",
+    }
     
 }
