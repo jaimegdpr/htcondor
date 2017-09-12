@@ -25,12 +25,20 @@ class htcondor::pre_install {
         owner => 'condor',
         group => 'condor',
         mode => '0755',
+        before => File['/home/condor/execute']
+    }
+
+    file {'/home/condor/execute':
+        ensure => directory,
+        owner => 'condor',
+        group => 'condor',
+        mode => '0755',
     }
 
     file {'/var/lib/condor/execute/':
         ensure => link,
-        target => '/home/condor',
-        require => File['/home/condor'],
+        target => '/home/condor/execute',
+        require => File['/home/condor/'],
     }
 
 }
