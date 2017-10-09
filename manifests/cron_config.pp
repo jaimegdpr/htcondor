@@ -6,14 +6,14 @@ class htcondor::cron_config {
         group => 'root',
         mode => '0755',
         source => 'puppet:///grid_files/htcondor/init_worker_condor_vars.sh',
-        notify => Exec['init_condor_vars']
+#        notify => Exec['init_condor_vars']
     }
 
-    #Script needs to be run if the host isn't rebooted
-    exec {'init_condor_vars':
-        command => '/root/condor/init_worker_condor_vars.sh',
-        refreshonly => true,
-    }
+#    #Script needs to be run if the host isn't rebooted
+#    exec {'init_condor_vars':
+#        command => '/root/condor/init_worker_condor_vars.sh',
+#        refreshonly => true,
+#    }
 
     cron::job { 'condor_init_wn_vars':
             minute      => '@reboot',
