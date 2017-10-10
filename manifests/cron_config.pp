@@ -22,7 +22,7 @@ class htcondor::cron_config {
             month       => '',
             weekday     => '',
             user        => 'root',
-            command     => '/root/condor/init_worker_condor_vars.sh > /var/log/init_worker_condor.log 2>&1' ,
+            command     => '/root/condor/init_worker_condor_vars.sh >> /var/log/init_worker_condor.log 2>&1' ,
             mode => '0600',
             environment => [ 'PATH="/sbin:/bin:/usr/sbin:/usr/bin:/root/scripts"', ],
             require => File['/root/condor/init_worker_condor_vars.sh'],
